@@ -67,7 +67,14 @@
             pantalla.value=numero;
         }
         function calcular(){
-            let num = numero.split('+','-','x','/')
+        let num = numero.split(/[+-*/]/)
+        //vamos a crear un nuevo array  que contenga los caracteres.
+            for(let i=0;i<numero.length;i++){
+                if(numero[i]=='+'){
+                    res+=num[i];
+                    let k=0;
+                }
+            }
 
             var res=0
             var op
