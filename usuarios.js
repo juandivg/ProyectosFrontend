@@ -2,6 +2,7 @@ let guardar = JSON.parse(localStorage.getItem("form"));
 let content = document.querySelector("#cont");
 
 
+
 function pintar(arr){
   content.innerHTML="";
   for (let i = 0; i < arr.length; i++) {
@@ -36,8 +37,10 @@ function pintar(arr){
 }
 pintar(guardar);
 
-function buscar(){
+function buscar(event){
   let valor=event.target.value;
+  let inp=document.getElementById('inpu');
+  console.log(event)
   let dato
   let filtrado=[];
   let j=0;
@@ -49,7 +52,14 @@ function buscar(){
 
     }
   }
-  pintar(filtrado);
+  console.log(inp.value)
+  if(inp.value!=""){
+    pintar(filtrado)
+  }
+  else{
+    pintar(guardar)
+  }
+  
 }
 let c=0;
 function ordenar(){

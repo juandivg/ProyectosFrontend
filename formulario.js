@@ -31,6 +31,8 @@ valForm.push({
    })
 
     localStorage.setItem('form',JSON.stringify(valForm))
+    console.log(event)
+    console.log(area)
     event.target.reset()
     
 }
