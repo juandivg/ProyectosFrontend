@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Formulario</title>
+</head>
+<body>
+<div class="flex h-screen">
+    <div class="flex w-1/4 bg-red-600">
+
+    </div>
+        <div class="flex flex-col w-3/4 justify-center items-center">
+            <div>
+                <h1 class="text-[30px] py-[10px] font-bold">Registro personas</h1>
+            </div>
+            <div>
+                <form onsubmit="enviar(event)" class="flex flex-col">
+                    <div class="flex w-full py-[20px] justify-between">
+                        <div>
+                            <p>Nombres</p>
+                        <input class="h-[40px] border border-fuchsia-500 rounded-md" name="name" type="text">
+                        </div>
+                        <div>
+                            <p>Apellidos</p>
+                            <input class="h-[40px]  border border-fuchsia-500 rounded-md" name="lastname" type="text">
+                        </div>
+                    </div>
+                
+                    <div class="flex w-full justify-between">
+                        <div>
+                            <p>Area</p>
+                            <input class="h-[40px] border border-fuchsia-500 rounded-md mr-[20px]" name="area" type="text">
+                        </div>
+                        <div>
+                            <p>Usuario</p>
+                            <input class="h-[40px] border border-fuchsia-500 rounded-md mr-[20px]" name="user" type="text">
+                        </div>
+                        <div>
+                            <p>Edad</p>
+                            <input class="h-[40px] border border-fuchsia-500 rounded-md" name="age" type="text">
+                        </div>
+                    </div>
+                <div class="py-[5px]">
+                    <div>
+                        <div><p>Direccion</p></div>
+                    </div>
+                    <div>
+                        <input class="h-[40px] w-full border border-fuchsia-500 rounded-md" name="address"type="text">
+                    </div>
+                </div>
+                <div></div>
+                    <div><p>Email</p></div>
+                    <div>
+                        <input class="h-[40px] w-full border border-fuchsia-500 rounded-md" name="email" type="text">
+                    </div>
+                </div>
+                <div class="py-[20px]">
+                    <button class="border text-white border-fuchsia-500 rounded-xl bg-red-600 p-[5px] px-8" type="submit">Enviar</button>
+                </div>
+            </form>
+            </div>
+
+                
+
+        </div>
+
+
+</div>
+
+</body>
+<script src="./formulario.js"></script>
+</html>

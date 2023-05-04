@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+</head>
+<body class="flex flex-col justify-center items-center">
+    <h1 class="flex text-[100px]">Triki</h1>
+    <div class="flex w-[400px] h-[400px] grid grid-cols-3 gap-0 border border-black">
+        <button class=" flex justify-center align-center items-center border border-black h1 v1 d1 b" onclick="selection(event,0,0)"></button>
+        <button class=" flex justify-center align-center items-center border border-black h1 v2 b" onclick="selection(event,0,1)"></button>
+        <button class="flex justify-center align-center items-center border border-black h1 v3 d2 b"onclick="selection(event,0,2)"></button>
+        <button class="flex justify-center align-center items-center border border-black h2 v1 b" onclick="selection(event,1,0)"></button>
+        <button class=" flex justify-center align-center items-center border border-black h2 v2 d1 d2 b" onclick="selection(event,1,1)"></button>
+        <button class=" flex justify-center align-center items-center border border-black h2 v3 b" onclick="selection(event,1,2)"></button>
+        <button class="flex justify-center align-center items-center border border-black h3 v1 d2 b" onclick="selection(event,2,0)"></button>
+        <button class="flex justify-center align-center items-center border border-black h3 v2 b" onclick="selection(event,2,1)"></button>
+        <button class=" flex justify-center align-center items-center border border-black h3 v3 d1 b" onclick="selection(event,2,2)"></button>
+
+    </div>
+    <p id="ganador" ></p>
+    <button id="reset" class="" onclick="blank()"></button>
+
+</body>
+<script>    
+    let mensaje=document.getElementById("ganador")
+    let resetear=document.getElementById("reset")
+
+    let play1="X"
+    let play2="O"
+    let c=0;
+    let anterior=""
+    let posicion=[[],[],[]]
+    let ganador=true;
+    function validar(){
+        if(posicion[0][0]==posicion[1][0]&&posicion[1][0]==posicion[2][0]&& posicion[2][0] != undefined){
+            ganador = false
+            textoganador(posicion[0][0])
+            color(".v1")
+            resetear.textContent="Reset";
+            resetear.classList.add("bg-grey","border","border-black","rounded-md","p-4","mt-4")
+            
+
+           
+        }
+        else if(posicion[0][0]==posicion[1][1]&&posicion[1][1]==posicion[2][2] && posicion[0][0] != undefined){
+            ganador = false
+            textoganador(posicion[0][0])
+            color(".d1")
+            resetear.textContent="Reset";
+            resetear.classList.add("bg-grey","border","border-black","rounded-md","p-4","mt-4")
+        }
+        else if(posicion[0][0]==posicion[0][1]&&posicion[0][1]==posicion[0][2] && posicion[0][0] != undefined){
+            ganador = false
+            textoganador(posicion[0][0])
+            color(".h1")
+            resetear.textContent="Reset";
+            resetear.classList.add("bg-grey","border","border-black","rounded-md","p-4","mt-4")
+        }
+        else if(posicion[1][0]==posicion[1][1]&&posicion[1][1]==posicion[1][2] && posicion[1][0] != undefined){
+            ganador = false
+            textoganador(posicion[1][0])
+            color(".h2")
+            resetear.textContent="Reset";
+            resetear.classList.add("bg-grey","border","border-black","rounded-md","p-4","mt-4")
+        }
+        else if(posicion[0][1]==posicion[1][1]&&posicion[1][1]==posicion[2][1] && posicion[0][1] != undefined){
+            ganador = false
+            textoganador(posicion[0][1])
+            color(".v2")
+            resetear.textContent="Reset";
+            resetear.classList.add("bg-grey","border","border-black","rounded-md","p-4","mt-4")
+        }
+        else if(posicion[2][0]==posicion[2][1]&&posicion[2][1]==posicion[2][2] && posicion[2][0] != undefined){
+            ganador = false
+            textoganador(posicion[2][0])
+            color(".h3")
+            resetear.textContent="Reset";
+            resetear.classList.add("bg-grey","border","border-black","rounded-md","p-4","mt-4")
+        }
+        else if(posicion[0][2]==posicion[1][1]&&posicion[1][1]==posicion[2][0] && posicion[0][2] != undefined){
+            ganador = false
+            textoganador(posicion[0][2])
+            color(".d2")
+            resetear.textContent="Reset";
+            resetear.classList.add("bg-grey","border","border-black","rounded-md","p-4","mt-4")
+        }
+        else if(posicion[0][2]==posicion[1][2]&&posicion[1][2]==posicion[2][2] && posicion[0][2] != undefined){
+            ganador = false
+            textoganador(posicion[0][2])
+            color(".v3")
+            resetear.textContent="Reset";
+            resetear.classList.add("bg-grey","border","border-black","rounded-md","p-4","mt-4")
+
+    }
+}
+
+
+    function selection(event,i,j){
+
+       if (ganador) {
+        if(posicion[i][j]!=undefined){
+            event.target.textContent = posicion[i][j];
+        }
+        else if(anterior==""){
+            event.target.textContent=play1;
+            posicion[i][j]=play1;
+            anterior=play1;
+           
+        }
+        else if(anterior=="X"){
+            anterior=""
+            event.target.textContent=play2;
+            posicion[i][j]=play2;
+         
+        }   
+        c++;
+            if(c>4){
+              validar()
+            }
+       }
+    }
+
+
+    function textoganador(text){
+        mensaje.textContent="El ganador es el jugador "+text;
+        mensaje.classList.add("p-4","color-blue","text-[20px]")
+    
+    }
+function color(clase){
+    let botones=document.querySelectorAll(clase)
+    console.log(botones)
+        botones.forEach(boton => {
+                boton.classList.add("bg-green-700")
+            });
+}
+
+function blank(){
+    let blanco=document.querySelectorAll(".b")
+    console.log(blanco)
+    blanco.forEach(boton => {
+                boton.textContent=""
+                boton.classList.remove("bg-green-700")
+            });
+            ganador=true;
+            mensaje.textContent="";
+            posicion=[[],[],[]];
+            anterior="";
+            c=0;
+}
+</script>
+</html>
