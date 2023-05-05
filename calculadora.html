@@ -67,30 +67,83 @@
             pantalla.value=numero;
         }
         function calcular(){
-        let num = numero.split(/[+\-*\/]/);
+        let num = numero.split(/[+\-x\/]/);
         console.log(num)
 
         let arr=numero.split('');
          let signos=[];
          let j=0;
          for(let i=0;i<arr.length;i++){
-            if(arr[i]=='+'||arr[i]=='-'||arr[i]=='*'||arr[i]=='/'){
+            if(arr[i]=='+'||arr[i]=='-'||arr[i]=='x'||arr[i]=='/'){
                 signos[j]=arr[i];
                 j++;
 
             }
          }   
+         var res;
          console.log(signos)
+         if(arr[0]=='-'){
+            signos.shift()
+            num.shift()
+            res=parseFloat(-1*num[0])
 
-        var res=parseInt(num[0]);
-            
-        //vamos a crear un nuevo array  que contenga los caracteres.
+         }
+         else{
+            res=parseFloat(num[0]);
+         }
+         console.log(signos)
+         const k=signos.length
+         let copia=signos.slice();
+         let c=0
+         let z=0
+         for(let i=0;i<k;i++){
+            if(copia[i]=='x'){
+                if(z>0){
+                    num[i-c]*=parseFloat(num[i+1-c])
+                    num.splice(i+1-c,1)
+                    signos.splice(i-c,1)
+                    z=0;
+                    c++;   
+                }
+                else{
+                num[i-c]*=parseFloat(num[i+1-c])
+                num.splice(i+1,1)
+                signos.splice(i,1)
+                c++;
+                }
+
+                if(copia[i]==copia[i+1]){
+                z=1;
+                }
+
+
+            }
+            else if(copia[i]=='/'){
+                num[i]/=parseFloat(num[i+1])
+                num.splice(i+1,1)
+                signos.splice(i,1)
+            }
+         }
+         if(signos.length==0){
+            res=num[0]
+         }
+         else{
             for(let i=1;i<num.length;i++){
 
-                if(signos[i-1]=='+'){
-                    res+=parseInt(num[i]);
-                }
+            if(signos[i-1]=='+'){
+                res+=parseFloat(num[i]);
             }
+            else if(signos[i-1]=='-'){
+                res-=parseFloat(num[i]);
+            }
+            }
+         }
+
+
+        
+            
+        //vamos a crear un nuevo array  que contenga los caracteres.
+
             pantalla.value=res;
 
 
