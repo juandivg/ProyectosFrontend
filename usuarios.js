@@ -62,30 +62,29 @@ function buscar(event){
   
 }
 let c=0;
-function ordenar(){
+const nombre=guardar.map(objeto => objeto.name);
+const area2=guardar.map(objeto => objeto.area);
+const edad=guardar.map(objeto => objeto.age);
+function ordenar(arr){
    
   if(c==1){
     pintar(guardar);
     c=0
   }
   else{
-    let arrfilas=[];
-for(let i=0;i<guardar.length;i++){
-  arrfilas[i]=guardar[i].name;
-
-}
-arrfilas.sort();
-for(let i=0;i<arrfilas.length;i++){
+    
+    let arr2=arr.slice();
+    arr2.sort();
+for(let i=0;i<arr.length;i++){
   
-  for(let j=0;j<arrfilas.length;j++){
-    if(arrfilas[i]==guardar[j].name){
-      arrfilas[i]=guardar[j];
+  for(let j=0;j<arr.length;j++){
+    if(arr2[i]==arr[j]){
+      arr2[i]=guardar[j];
     }
   }
 
 }
-pintar(arrfilas);
-  console.log(arrfilas);
+pintar(arr2);
   c=1;
   }
 
