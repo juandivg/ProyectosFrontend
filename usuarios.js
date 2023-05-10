@@ -3,9 +3,9 @@ let content = document.querySelector("#cont");
 
 
 
-function pintar(arr){
+function pintar(ar){
   content.innerHTML="";
-  for (let i = 0; i < arr.length; i++) {
+  for (let i = 0; i < ar.length; i++) {
     let tr = document.createElement("tr");
   
     let td1=document.createElement("td");
@@ -18,11 +18,11 @@ function pintar(arr){
     td3.classList.add("px-16")
     td4.classList.add("px-16")
     td5.classList.add("px-16")
-    td1.textContent = arr[i].area;
-    td2.textContent = arr[i].name;
-    td3.textContent = arr[i].user;
-    td4.textContent = arr[i].email;
-    td5.textContent = arr[i].age;
+    td1.textContent = ar[i].area;
+    td2.textContent = ar[i].name;
+    td3.textContent = ar[i].user;
+    td4.textContent = ar[i].email;
+    td5.textContent = ar[i].age;
     content.appendChild(tr);
     tr.appendChild(td1);
     tr.appendChild(td2);
@@ -34,20 +34,26 @@ function pintar(arr){
   
   
   }
+  
 }
 pintar(guardar);
-
+let z=0;
+var nombre=[]
+var area2=[]
+var edad=[]
+let filtrado=[];
 function buscar(event){
-  let valor=event.target.value;
+  filtrado=[];
   let inp=document.getElementById('inpu');
+  let valor=event.target.value;
   console.log(event)
   let dato
-  let filtrado=[];
   let j=0;
   for(let i=0;i<guardar.length;i++){
     dato=guardar[i].name;
     if(dato.includes(valor)){
       filtrado[j]=guardar[i];
+      
       j++;
 
     }
@@ -55,35 +61,68 @@ function buscar(event){
   console.log(inp.value)
   if(inp.value!=""){
     pintar(filtrado)
+    asignar(filtrado)
+    console.log(filtrado);
+    console.log(nombre)
   }
   else{
     pintar(guardar)
+    asignar(guardar)
+    
   }
+
+  
   
 }
+
 let c=0;
-const nombre=guardar.map(objeto => objeto.name);
-const area2=guardar.map(objeto => objeto.area);
-const edad=guardar.map(objeto => objeto.age);
+function asignar(array){
+  nombre=array.map(objeto => objeto.name);
+ area2=array.map(objeto => objeto.area);
+ edad=array.map(objeto => objeto.age);
+
+}
+asignar(guardar);
+
+ 
+
 function ordenar(arr){
-   
+   let k2=filtrado.length;
+   let k=guardar.length;
   if(c==1){
-    pintar(guardar);
+    if(arr.length<guardar.length){
+      pintar(filtrado);
+    }
+    else{
+      pintar(guardar);
+    }
+    
     c=0
   }
   else{
     
     let arr2=arr.slice();
     arr2.sort();
-for(let i=0;i<arr.length;i++){
-  
-  for(let j=0;j<arr.length;j++){
-    if(arr2[i]==arr[j]){
-      arr2[i]=guardar[j];
+    if(arr.length<guardar.length){
+      for(let i=0;i<arr2.length;i++){
+        for(let j=0;j<k2;j++){
+          if(arr2[i]==arr[j]){
+            arr2[i]=filtrado[j];
+          }
+        }
     }
+    }
+else{
+  for(let i=0;i<arr2.length;i++){
+    for(let j=0;j<k;j++){
+      if(arr2[i]==arr[j]){
+        arr2[i]=guardar[j];
+      }
+    }
+  
   }
-
 }
+
 pintar(arr2);
   c=1;
   }
