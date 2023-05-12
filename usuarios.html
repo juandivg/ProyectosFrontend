@@ -8,7 +8,7 @@
     <title>Usuarios</title>
 </head>
 <body>
-    <div class="flex h-screen">
+    <div class="flex h-screen w-screen">
         <div class="flex w-1/4 bg-red-600">
 
         </div>
@@ -28,67 +28,73 @@
                 </div>
                 
                         <table>
-                            <tr>
+                            <thead>
+                                <tr class="bg-gray-100">
                                 
                                     
-                                        <th>
-                                            <div class="flex justify-center items-center">
-                                                <p>Area</p>
-                                                <button onclick="ordenar(area2)"><img src="./Vector.png" alt=""></button>
-                                            </div>
+                                    <th>
+                                        <div class="flex justify-center items-center">
+                                            <p>Area</p>
+                                            <button onclick="ordenar(area2)"><img src="./Vector.png" alt=""></button>
+                                        </div>
+                        
+                                    </th>
+
+                                
                             
-                                        </th>
+                            
+                              
+                                <th>
+                                    <div class="flex justify-center items-center">
+                                        <p>Nombre</p>
+                                        <button onclick="ordenar(nombre)"><img src="./Vector.png" alt=""></button>
+                                    </div>
 
-                                    
-                                
-                                
-                                  
-                                    <th>
-                                        <div class="flex justify-center items-center">
-                                            <p>Nombre</p>
-                                            <button onclick="ordenar(nombre)"><img src="./Vector.png" alt=""></button>
-                                        </div>
+                                </th>
 
-                                    </th>
-
-                                    
                                 
-                                
-                                    
-                                        <th>
-                                            <div class="flex justify-center items-center">
-                                                <p>Usuario</p>
-                                                <button onclick="ordenar()"><img src="./Vector.png" alt=""></button>
-                                            </div>
-                                        </th>
-                                        
-
-                                    
-                                
-                                
-                                    
-                                        <th>
-                                            <div class="flex justify-center items-center">
-                                                <p>Email</p>
-                                                <button onclick="ordenar()"><img src="./Vector.png" alt=""></button>
-                                            </div>
-                                        </th>
-
-                                    
+                            
+                            
                                 
                                     <th>
                                         <div class="flex justify-center items-center">
-                                            <p>Edad</p>
-                                            <button onclick="ordenar(edad)"><img src="./Vector.png" alt=""></button>
+                                            <p>Usuario</p>
+                                            <button onclick="ordenar()"><img src="./Vector.png" alt=""></button>
                                         </div>
                                     </th>
-                                
-
                                     
+
                                 
-                            </tr>
-                        <tbody id="cont">
-                        </tbody>
+                            
+                            
+                                
+                                    <th>
+                                        <div class="flex justify-center items-center">
+                                            <p>Email</p>
+                                            <button onclick="ordenar()"><img src="./Vector.png" alt=""></button>
+                                        </div>
+                                    </th>
+
+                                
+                            
+                                <th>
+                                    <div class="flex justify-center items-center">
+                                        <p>Edad</p>
+                                        <button onclick="ordenar(edad)"><img src="./Vector.png" alt=""></button>
+                                    </div>
+                                </th>
+                                <th>
+                                    <div class="flex justify-center items-center">
+                                        <p>Eliminar</p>
+                                    </div>
+                                </th>
+                            
+                        </tr>
+                            </thead>
+                            <tbody id="cont">
+
+                            </tbody>
+
                     </table>
             
         </div>

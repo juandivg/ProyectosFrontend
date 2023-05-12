@@ -13,22 +13,31 @@ function pintar(ar){
     let td3=document.createElement("td");
     let td4=document.createElement("td");
     let td5=document.createElement("td");
-    td1.classList.add("px-16")
-    td2.classList.add("px-16")
-    td3.classList.add("px-16")
-    td4.classList.add("px-16")
-    td5.classList.add("px-16")
-    td1.textContent = ar[i].area;
-    td2.textContent = ar[i].name;
-    td3.textContent = ar[i].user;
-    td4.textContent = ar[i].email;
-    td5.textContent = ar[i].age;
-    content.appendChild(tr);
+    let td6=document.createElement("td");
+    let btn=document.createElement("button");
+    let img=document.createElement("img");
+    td1.innerText = ar[i].area;
+    td2.innerText = ar[i].name;
+    td3.innerText = ar[i].user;
+    td4.innerText = ar[i].email;
+    td5.innerText = ar[i].age;
+    td6.appendChild(btn)
+    btn.appendChild(img)
+    img.setAttribute('src','./xroja.jpg')
+    img.classList.add("w-[20px]","h-[20px]")
+    td1.classList.add("text-center")
+    td2.classList.add("text-center")
+    td3.classList.add("text-center")
+    td4.classList.add("text-center")
+    td5.classList.add("text-center")
+    td6.classList.add("text-center")
     tr.appendChild(td1);
     tr.appendChild(td2);
     tr.appendChild(td3);
     tr.appendChild(td4);
     tr.appendChild(td5);
+    tr.appendChild(td6)
+    content.appendChild(tr);
   
   
   
@@ -62,12 +71,11 @@ function buscar(event){
   if(inp.value!=""){
     pintar(filtrado)
     asignar(filtrado)
-    console.log(filtrado);
-    console.log(nombre)
   }
   else{
     pintar(guardar)
     asignar(guardar)
+
     
   }
 
