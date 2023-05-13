@@ -1,6 +1,6 @@
 let guardar = JSON.parse(localStorage.getItem("form"));
 let content = document.querySelector("#cont");
-
+var e;
 
 
 function pintar(ar){
@@ -16,15 +16,18 @@ function pintar(ar){
     let td6=document.createElement("td");
     let btn=document.createElement("button");
     let img=document.createElement("img");
+    img.setAttribute('src','./xroja.jpg')
+    img.classList.add("w-[20px]","h-[20px]")
+    btn.appendChild(img)
+    td6.appendChild(btn)
+    btn.addEventListener("click",function(){
+      eliminar(ar[i]);
+    });
     td1.innerText = ar[i].area;
     td2.innerText = ar[i].name;
     td3.innerText = ar[i].user;
     td4.innerText = ar[i].email;
     td5.innerText = ar[i].age;
-    td6.appendChild(btn)
-    btn.appendChild(img)
-    img.setAttribute('src','./xroja.jpg')
-    img.classList.add("w-[20px]","h-[20px]")
     td1.classList.add("text-center")
     td2.classList.add("text-center")
     td3.classList.add("text-center")
@@ -43,7 +46,7 @@ function pintar(ar){
   
   
   }
-  
+  console.log(ar)
 }
 pintar(guardar);
 let z=0;
@@ -51,6 +54,24 @@ var nombre=[]
 var area2=[]
 var edad=[]
 let filtrado=[];
+function eliminar(parametro){
+
+  let indice=guardar.indexOf(parametro)
+  if(window.confirm("Estás seguro que deseas eliminar este usuario?")){
+    let objetoAEliminar = parametro
+    guardar.splice(indice,1)
+    pintar(guardar)
+    let datostexto=JSON.stringify(guardar)
+    localStorage.setItem('form',datostexto)
+
+    console.log(indice)
+    console.log(objetoAEliminar)
+  }
+  else{
+    console.log("operacion cancelada");
+  }
+
+}
 function buscar(event){
   filtrado=[];
   let inp=document.getElementById('inpu');
