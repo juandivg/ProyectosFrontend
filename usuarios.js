@@ -54,18 +54,17 @@ var nombre=[]
 var area2=[]
 var edad=[]
 let filtrado=[];
+let inp=document.getElementById('inpu');
 function eliminar(parametro){
 
   let indice=guardar.indexOf(parametro)
   if(window.confirm("Estás seguro que deseas eliminar este usuario?")){
-    let objetoAEliminar = parametro
     guardar.splice(indice,1)
     pintar(guardar)
+    asignar(guardar)
+    inp.value=""
     let datostexto=JSON.stringify(guardar)
     localStorage.setItem('form',datostexto)
-
-    console.log(indice)
-    console.log(objetoAEliminar)
   }
   else{
     console.log("operacion cancelada");
@@ -74,7 +73,6 @@ function eliminar(parametro){
 }
 function buscar(event){
   filtrado=[];
-  let inp=document.getElementById('inpu');
   let valor=event.target.value;
   console.log(event)
   let dato
