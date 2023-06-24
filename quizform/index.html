@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <title>Document</title>
+</head>
+<body class="flex justify-center items-center">
+<div class="flex w-[50%]">
+    <form class="grid grid-cols-2 w-full gap-2" id="formu">
+        <input class="border border-[2px] border-black" type="text" id="question" placeholder="Ingrese la ṕregunta" required>
+        <input class="border border-[2px] border-black" type="text" id="op1" placeholder="opcion 1" required>
+        <input class="border border-[2px] border-black" type="text" id="op2" placeholder="opcion 2" required>
+        <input class="border border-[2px] border-black" type="text" id="op3" placeholder="opcion 3" required>
+        <input class="border border-[2px] border-black" type="text" id="op4" placeholder="opcion 4" required>
+        <input class="border border-[2px] border-black" type="text" id="correct" placeholder="opcion correcta" required>
+        <button class="border p-[4px] bg-blue-400 rounded-xl justify-center itmes-center" type="submit">Agregar</button>
+      </form>
+</div>
+    <div class="flex flex-col" id="render">
+
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
