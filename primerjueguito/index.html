@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primer jueguito</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-indigo-700 text-{#fff} m-0 p-0 ">
+    <div id="contenedor" class="flex items-center justify-center h-screen w-sreen flex-wrap">
+        <canvas id="game" class="border-[4px] border-[#ff6600] border-solid rounded-[8px] bg-[#feff9d]"></canvas>
+        <div id="botones" class="flex justify-center flex-wrap margin-auto w-full">
+            <button id="up" class="bg-[#fdef05] border-[4px] rounded-[8px] border-[#ff6600] py-[5px] px-[20px] mx-[10px] w-[100px] max-[440px]:mt-[25px] max-[440px]:mx-[100%]">Arriba</button>
+            <button id="left" class="bg-[#fdef05] border-[4px] rounded-[8px] border-[#ff6600] py-[5px] px-[20px] mx-[10px] w-[100px] max-[440px]:mt-[25px]">Izquierda</button>
+            <button id="right" class="bg-[#fdef05] border-[4px] rounded-[8px] border-[#ff6600] py-[5px] px-[20px] mx-[10px] w-[100px] max-[440px]:mt-[25px]">Derecha</button>
+            <button id="down" class="bg-[#fdef05] border-[4px] rounded-[8px] border-[#ff6600] py-[5px] px-[20px] mx-[10px] w-[100px] max-[440px]:mt-[25px] max-[440px]:mx-[100%]">Abajo</button>
+    
+        </div>
+        <div id="mensajes" class="flex flex-wrap margin-auto w-4/5 max-w-[460px]">
+            <p class="block m-0 w-full">Vidas: <span id="vidas"></span></p>
+            <p class="block m-0 w-full">Tiempo: <span id="time"></span></p>
+        </div>
+    </div>
+    <script src="./maps.js"></script>
+    <script src="./game.js"></script>
+    
+</body>
+</html>
