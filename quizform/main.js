@@ -33,6 +33,7 @@ class QuestionManager{
   const questionManager=new QuestionManager();
   let c=false;
   let d;
+  let puntaje=0;
 const questForm=document.getElementById("formu");
 const quest=document.getElementById("questionid");
 const opcion1=document.querySelector("#op1")
@@ -41,6 +42,21 @@ const opcion3=document.querySelector("#op3")
 const opcion4=document.querySelector("#op4")
 const correcta2=document.querySelector("#correct")
 const Questionslist=document.getElementById("render");
+const send=document.getElementById('enviar')
+const score=document.getElementById('puntaje')
+send.addEventListener("click",(e)=>{
+  const questions=questionManager.getQuestions()
+  determinar();
+  score.classList.remove("hidden")
+  score.classList.add("flex")
+  const scoretitle=document.createElement("h1")
+  const renderscore=document.createElement("div")
+  scoretitle.innerText="Su puntaje es:"
+  console.log(puntaje);
+  renderscore.innerHTML=`${puntaje}/${questions.length}`
+  score.append(scoretitle,renderscore)
+  
+})
 questForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const pregunta=quest.value;
@@ -57,10 +73,9 @@ questForm.addEventListener("submit", (e) => {
     }
     
     renderQuestions();
+    
     questForm.reset();
 })
-
-
 function renderQuestions(){
     Questionslist.innerHTML="";
     const questions=questionManager.getQuestions();
@@ -75,24 +90,20 @@ function renderQuestions(){
       <legend class="font-bold">${i+1}. ${questionobj.pregunta}</legend>
 
       <div>
-        <input type="radio" id="opc1" name="drone"
-               >
-        <label for="opc1">${questionobj.option1}</label>
+        <input class=" mr-[1%]" type="radio" name="q${i}" value="${questionobj.option1}"
+               >${questionobj.option1}
       </div>
       <div>
-      <input type="radio" id="opc2" name="drone"
-             >
-      <label for="opc2">${questionobj.option2}</label>
+      <input class=" mr-[1%]" type="radio" name="q${i}" value="${questionobj.option2}"
+      >${questionobj.option2}
     </div>
     <div>
-    <input type="radio" id="opc3" name="drone"
-           >
-    <label for="opc3">${questionobj.option3}</label>
+    <input class=" mr-[1%]" type="radio" name="q${i}" value="${questionobj.option3}"
+    >${questionobj.option3}
   </div>
   <div>
-  <input type="radio" id="opc4" name="drone"
-         >
-  <label for="opc4">${questionobj.option4}</label>
+  <input class=" mr-[1%]" type="radio" name="q${i}" value="${questionobj.option4}"
+  >${questionobj.option4}
 </div>
   </fieldset>
 <div class="flex justify-center items-center w-full">
@@ -103,9 +114,32 @@ function renderQuestions(){
 
         Questionslist.appendChild(questionblock);
     }
-
-
 }
+// const deter=document.getElementsByName('q0')
+// console.log(deter[0])
+ function determinar(){
+   const questions=questionManager.getQuestions();
+   let selectedOption=[]
+   let iteraciones=0;
+   for(let i=0;i<questions.length;i++){
+     selectedOption=document.getElementsByName("q"+(i))
+     console.log(selectedOption)
+     for(var sel of selectedOption){
+      iteraciones++;
+        if(sel.checked){
+          if(questions[i].correcta==iteraciones){
+            puntaje++;
+          }
+        }
+     }
+     console.log(puntaje)
+     selectedOption=[]
+     iteraciones=0;
+   }
+ }
+
+
+
 function removeQuestion(index){
   questionManager.removeQuestion(index);
   renderQuestions();

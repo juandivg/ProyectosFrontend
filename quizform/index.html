@@ -9,20 +9,34 @@
     <title>Document</title>
 </head>
 <body class="flex flex-col justify-center items-center">
-<div class="flex w-[90%] px-[5%] py-[2%] bg-blue-200">
+<div class="flex flex-col w-[90%] px-[5%] py-[2%] bg-blue-200">
     <form class="grid grid-cols-3 w-full gap-2" id="formu">
         <input class="border border-[2px] rounded-xl border-black" type="text" id="questionid" placeholder="Ingrese la ṕregunta" required>
         <input class="border border-[2px] rounded-xl border-black" type="text" id="op1" placeholder="opcion 1" required>
         <input class="border border-[2px] rounded-xl border-black" type="text" id="op2" placeholder="opcion 2" required>
         <input class="border border-[2px] rounded-xl border-black" type="text" id="op3" placeholder="opcion 3" required>
         <input class="border border-[2px] rounded-xl border-black" type="text" id="op4" placeholder="opcion 4" required>
-        <input class="border border-[2px] rounded-xl border-black" type="text" id="correct" placeholder="opcion correcta" required>
-        <button class="border col-start-2 p-[4px] bg-green-400 rounded-xl justify-center itmes-center" type="submit">Agregar</button>
+        <select input class="border border-[2px] rounded-xl border-black" type="text" id="correct" required>
+            <option value="selected" selected>Opcion correcta</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+        <button class="border p-[4px] bg-green-400 rounded-xl justify-center itmes-center" type="submit">Agregar</button>
+        
       </form>
+      <div class="flex justify-center items-center">
+        <button id="enviar" class="border px-[60px] bg-yellow-400 rounded-xl justify-center itmes-center">Enviar respuestas</button>
+      </div>
 </div>
     <ul class="flex border w-full justify-center items-center flex-col" id="render">
 
     </ul>
+    <div id="puntaje" class="hidden flex-col w-[90%] px-[5%] py-[2%] bg-blue-200">
+
+    </div>
+
     <script src="main.js"></script>
 </body>
 </html>

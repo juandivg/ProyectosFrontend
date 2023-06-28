@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Carrito de compras con Local Storage</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+  <h1>Carrito de compras</h1>
+    <form id="formu">
+    <input class="border border-black" type="text" id="description" placeholder="descripcion">
+  <input class="border border-black" type="text" id="price" placeholder="precio">
+  <input class="border border-black" type="text" id="quantity" placeholder="cantidad">
+  <button class="border border-black mx-[10px] bg-gray-400 p-[5px]" type="submit">Agregar al carrito</button>
+    </form>
+  <button class="border border-black mx-[10px] bg-gray-400 p-[5px]" id="btn3">Limpiar carrito</button>
+  <table class="mt-[5%] w-full">
+    <thead>
+        <tr class="bg-gray-100">
+        
+            
+            <th>
+                <div class="flex justify-center items-center">
+                    <p>Descripcion</p>
+                </div>
+
+            </th>
+      
+        <th>
+            <div class="flex justify-center items-center">
+                <p>Precio</p>
+            </div>
+
+        </th>
+            <th>
+                <div class="flex justify-center items-center">
+                    <p>Cantidad</p>
+                </div>
+            </th>
+            
+        <th>
+            <div class="flex justify-center items-center">
+                <p>Eliminar</p>
+            </div>
+        </th>
+    
+</tr>
+    </thead>
+    <tbody id="cartItems">
+
+    </tbody>
+
+</table>
+
+  <script>
+    // Obtener los elementos del carrito del Local Storage al cargar la página
+    class Carrito{
+        constructor(){
+            this.listacompras=[]
+        }
+        agregarArticulo(item){
+            this.listacompras.push(item)
+        }
+        quitarArticulo(index){
+
+            this.listacompras.splice(index,1)
+        }
+        vaciarCarrito(){
+            listacompras=[];
+        }
+        getArticulos(){
+            return this.listacompras
+        }
+    }
+    class Articulo{
+        constructor(descripcion, precio, cantidad){
+            this.descripcion=descripcion;
+            this.precio=precio;
+            this.cantidad=cantidad;
+        }
+    }
+    
+
+     var cartItemsList = document.getElementById('cartItems');
+        let comprasForm =document.getElementById('formu')
+        let boton2=document.getElementById('btn2')
+        let boton3=document.getElementById('btn3')
+        let articulos=[];
+        const carrito= new Carrito();
+        let arr= JSON.parse(localStorage.getItem('items')) || [];
+       
+        arr.forEach(element => {
+            carrito.agregarArticulo(element)
+        });
+        articulos=carrito.getArticulos()
+        renderItems(articulos);
+        comprasForm.addEventListener("submit", (e)=>{
+        e.preventDefault();
+        var descriptionin= document.getElementById('description').value;
+        var pricein= document.getElementById('price').value;
+        var quantityin= document.getElementById('quantity').value;
+        const articulo=new Articulo(descriptionin, pricein, quantityin)
+
+        console.log(articulo)
+        carrito.agregarArticulo(articulo)
+        articulos=carrito.getArticulos()
+        renderItems(articulos);
+        console.log(articulos)
+
+        localStorage.setItem('items',JSON.stringify(articulos))
+        comprasForm.reset();
+        })
+        function renderItems(par){
+            cartItemsList.innerHTML=""
+            for(let i=0;i<par.length;i++){
+                var cartItem = document.createElement('tr');
+                var td1=document.createElement('td')
+                var td2=document.createElement('td')
+                var td3=document.createElement('td')
+                var td4=document.createElement('td')
+                let btn=document.createElement("button");
+                btn.innerText="Remover item"
+                btn.classList.add("border", "border-black", "bg-gray-400", "p-[2px]")
+                btn.addEventListener("click",function(){
+                eliminar(par[i],i);
+                });
+
+                td1.innerText = par[i].descripcion;
+                td2.innerText = par[i].precio;
+                td3.innerText = par[i].cantidad;
+                td4.appendChild(btn)
+                td1.classList.add("text-center")
+                td2.classList.add("text-center")
+                td3.classList.add("text-center")
+                td4.classList.add("text-center")
+                cartItem.append(td1, td2, td3, td4)
+
+
+                
+                
+            cartItemsList.appendChild(cartItem);
+            }
+            
+        }
+        function eliminar(parametro,index){
+            parametro.cantidad=parseInt(parametro.cantidad)-1
+            if(parametro.cantidad<1){
+                carrito.quitarArticulo(index)
+                articulos=carrito.getArticulos()
+            }
+            else{
+                articulos.splice(index,1,parametro)
+            }
+            let datostexto=JSON.stringify(articulos)
+            localStorage.setItem('items',datostexto)
+            renderItems(articulos)
+
+        }
+  </script>
+</body>
+</html>
