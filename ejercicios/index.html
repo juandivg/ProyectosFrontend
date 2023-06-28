@@ -93,7 +93,7 @@
             carrito.agregarArticulo(element)
         });
         articulos=carrito.getArticulos()
-        renderItems(articulos);
+        renderItems();
         comprasForm.addEventListener("submit", (e)=>{
         e.preventDefault();
         var descriptionin= document.getElementById('description').value;
@@ -104,15 +104,15 @@
         console.log(articulo)
         carrito.agregarArticulo(articulo)
         articulos=carrito.getArticulos()
-        renderItems(articulos);
+        renderItems();
         console.log(articulos)
 
         localStorage.setItem('items',JSON.stringify(articulos))
         comprasForm.reset();
         })
-        function renderItems(par){
+        function renderItems(){
             cartItemsList.innerHTML=""
-            for(let i=0;i<par.length;i++){
+            for(let i=0;i<articulos.length;i++){
                 var cartItem = document.createElement('tr');
                 var td1=document.createElement('td')
                 var td2=document.createElement('td')
@@ -122,12 +122,12 @@
                 btn.innerText="Remover item"
                 btn.classList.add("border", "border-black", "bg-gray-400", "p-[2px]")
                 btn.addEventListener("click",function(){
-                eliminar(par[i],i);
+                eliminar(articulos[i],i);
                 });
 
-                td1.innerText = par[i].descripcion;
-                td2.innerText = par[i].precio;
-                td3.innerText = par[i].cantidad;
+              td1.innerText = articulos[i].descripcion;
+                td2.innerText = articulos[i].precio;
+                td3.innerText = articulos[i].cantidad;
                 td4.appendChild(btn)
                 td1.classList.add("text-center")
                 td2.classList.add("text-center")
@@ -142,7 +142,7 @@
             }
             
         }
-        function eliminar(parametro,index){
+      function eliminar(parametro,index){
             parametro.cantidad=parseInt(parametro.cantidad)-1
             if(parametro.cantidad<1){
                 carrito.quitarArticulo(index)
@@ -153,7 +153,7 @@
             }
             let datostexto=JSON.stringify(articulos)
             localStorage.setItem('items',datostexto)
-            renderItems(articulos)
+            renderItems()
 
         }
   </script>
