@@ -18,43 +18,61 @@
     </form>
   <button class="border border-black rounded-md mx-[10px] bg-red-400 p-[5px]" id="btn3">Limpiar carrito</button>
     </div>
-  <table class="mt-[2%] w-full">
-    <thead>
-        <tr class="bg-gray-100">
+
+        <table class="my-[2%] w-full">
+            <thead>
+                <tr class="bg-gray-100">
+                
+                    
+                    <th>
+                        <div class="flex justify-center items-center">
+                            <p>Descripcion</p>
+                        </div>
         
+                    </th>
+              
+                <th>
+                    <div class="flex justify-center items-center">
+                        <p>Precio</p>
+                    </div>
+        
+                </th>
+                    <th>
+                        <div class="flex justify-center items-center">
+                            <p>Cantidad</p>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="flex justify-center items-center">
+                            <p>Remover Item</p>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="flex justify-center items-center">
+                            <p>Añadir Item</p>
+                        </div>
+                    </th>
+                    
+                <th>
+                    <div class="flex justify-center items-center">
+                        <p>Eliminar Articulo</p>
+                    </div>
+                </th>
             
-            <th>
-                <div class="flex justify-center items-center">
-                    <p>Descripcion</p>
-                </div>
+        </tr>
+            </thead>
+            <tbody id="cartItems">
+        
+            </tbody>
+        
+        </table>
+        <div class="flex justify-center items-center">
+            <button id="checkout2" class="hidden border p-[10px] rounded-md bg-green-500">Checkout</button>
+        </div>
+        <div id="totalrender" class="flex my-[5%] justify-center items-center text-[20px] h-[10%] w-full bg-gray-100">
 
-            </th>
-      
-        <th>
-            <div class="flex justify-center items-center">
-                <p>Precio</p>
-            </div>
+        </div>
 
-        </th>
-            <th>
-                <div class="flex justify-center items-center">
-                    <p>Cantidad</p>
-                </div>
-            </th>
-            
-        <th>
-            <div class="flex justify-center items-center">
-                <p>Eliminar</p>
-            </div>
-        </th>
-    
-</tr>
-    </thead>
-    <tbody id="cartItems">
-
-    </tbody>
-
-</table>
 
   <script>
     // Obtener los elementos del carrito del Local Storage al cargar la página
@@ -88,6 +106,8 @@
      var cartItemsList = document.getElementById('cartItems');
         let comprasForm =document.getElementById('formu')
         let boton3=document.getElementById('btn3')
+        let total=document.getElementById('checkout2')
+        let factura=document.getElementById('totalrender')
         let articulos=[];
         const carrito= new Carrito();
         let arr= JSON.parse(localStorage.getItem('items')) || [];
@@ -102,6 +122,16 @@
             if(e.target.value<1){
                 quantity2.value=1;
             }
+        })
+        total.addEventListener("click", (e)=>{
+            let sum=0;
+            for(let i=0;i<articulos.length;i++){
+                sum+=parseInt(articulos[i].precio)*parseInt(articulos[i].cantidad)
+            }
+            if(articulos.length>0){
+                factura.innerHTML=`El total de su factura es ${sum} `
+            }
+            
         })
         comprasForm.addEventListener("submit", (e)=>{
         e.preventDefault();
@@ -120,34 +150,66 @@
         })
         boton3.addEventListener("click", (e)=>{
             carrito.vaciarCarrito();
+            factura.innerHTML="";
             localStorage.clear();
             renderItems();
         })
         function renderItems(){
             cartItemsList.innerHTML=""
             articulos=carrito.getArticulos()
+            console.log(articulos.length)
+            if(articulos.length>0){
+                
+                total.classList.remove('hidden')
+            }
+            else{
+                total.classList.add('hidden')
+            }
             for(let i=0;i<articulos.length;i++){
                 var cartItem = document.createElement('tr');
                 var td1=document.createElement('td')
                 var td2=document.createElement('td')
                 var td3=document.createElement('td')
                 var td4=document.createElement('td')
-                let btn=document.createElement("button");
-                btn.innerText="Remover item"
-                btn.classList.add("border", "border-black","rounded-md", "bg-red-400", "p-[2px]")
-                btn.addEventListener("click",function(){
-                eliminar(articulos[i],i);
+                var td5=document.createElement('td')
+                var td6=document.createElement('td')
+                let btn1=document.createElement("button");
+                let btn2=document.createElement("button");
+                let btn3=document.createElement("button")
+                btn3.innerText="Eliminar"
+                let imgr=document.createElement("img")
+                imgr.setAttribute('src','./imagenes/remover.png')
+                imgr.classList.add("w-[30px]","h-[30px]")
+                btn1.appendChild(imgr)
+                let imga=document.createElement("img")
+                imga.setAttribute('src','./imagenes/agregar.png')
+                imga.classList.add("w-[30px]","h-[30px]")
+                btn2.appendChild(imga)
+
+                btn3.classList.add("border", "border-black","rounded-md", "bg-red-400", "p-[2px]")
+                btn1.addEventListener("click",function(){
+                remover(articulos[i],i);
+                });
+                btn2.addEventListener("click",function(){
+                agregar(articulos[i],i);
+                });
+                btn3.addEventListener("click",function(){
+                eliminar(i);
                 });
 
               td1.innerText = articulos[i].descripcion;
                 td2.innerText = articulos[i].precio;
                 td3.innerText = articulos[i].cantidad;
-                td4.appendChild(btn)
+                td4.appendChild(btn1)
+                td5.appendChild(btn2)
+                td6.appendChild(btn3)
                 td1.classList.add("text-center")
                 td2.classList.add("text-center")
                 td3.classList.add("text-center")
                 td4.classList.add("text-center")
-                cartItem.append(td1, td2, td3, td4)
+                td5.classList.add("text-center")
+                td6.classList.add("text-center")
+                cartItem.append(td1, td2, td3, td4, td5, td6)
 
 
                 
@@ -156,7 +218,7 @@
             }
             
         }
-      function eliminar(parametro,index){
+      function remover(parametro,index){
             parametro.cantidad=parseInt(parametro.cantidad)-1
             if(parametro.cantidad<1){
                 carrito.quitarArticulo(index)
@@ -168,6 +230,17 @@
             localStorage.setItem('items',datostexto)
             renderItems()
 
+        }
+        function agregar(parametro,index){
+            parametro.cantidad=parseInt(parametro.cantidad)+1;
+            articulos.splice(index,1,parametro);
+            let datostexto2=JSON.stringify(articulos)
+            localStorage.setItem('items',datostexto2)
+            renderItems()
+        }
+        function eliminar(index){
+            carrito.quitarArticulo(index)
+            renderItems()
         }
   </script>
 </body>
