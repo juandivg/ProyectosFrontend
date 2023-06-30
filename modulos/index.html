@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="flex flex-col w-full justify-center items-center ">
+        <h1 class="flex text-[30px]">Convertor de magnitudes</h1>
+        <p>Elija la magnitud que desea convertir:</p>
+        <select input type="text" id="lista">
+            <option value="Distancia">Distancia</option>
+            <option value="Temperatura">Temperatura</option>
+            <option value="Peso">Peso</option>
+        </select>
+    </div>
+    <div id="distancia" class="flex h-[10%] w-full py-[3%]"></div>
+    <div id="peso" class="flex h-[10%] w-full"></div>
+    <div id="temperatura" class="flex h-[10%] w-full"></div>
+    <script src="./conversor.js" type="module"></script>
+</body>
+</html>
