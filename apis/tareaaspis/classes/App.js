@@ -6,7 +6,8 @@ class App{
         this.initApp();
     }
     initApp(){
-        btn.addEventListener("click",()=>{
+        btn.addEventListener("submit",(e)=>{
+            e.preventDefault();
             capturarDAtos();
         })
         
