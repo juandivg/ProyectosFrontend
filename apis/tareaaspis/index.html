@@ -4,14 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <title>Document</title>
 </head>
 <body>
-<form id="formu">
-    <input id="city" type="text">
-    <button type="submit">Enviar</button>
+<form id="formu" class="flex flex-col w-full justify-center items-center py-[2%]">
+    <input id="city" class="border border-black rounded-md align-center" type="text" placeholder="Ingrese la ciudad" required>
+    <button type="submit" class="border rounded-md bg-blue-400 px-[10px] py-[5px] mt-[5px]">Enviar</button>
 </form>
-    <div id="container"></div>
+    <div class="flex w-full justify-center items-center">
+        <div id="container" class="hidden flex-col w-[50%] bg-blue-400 mt-[10%] justify-center items-center border border-black rounded-md"></div>
+    </div>
     <script src="./app.js" type="module"></script>
 </body>
 </html>

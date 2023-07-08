@@ -9,6 +9,7 @@ class App{
         btn.addEventListener("submit",(e)=>{
             e.preventDefault();
             capturarDAtos();
+            btn.reset();
         })
         
 

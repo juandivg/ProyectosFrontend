@@ -33,17 +33,23 @@ async function mostrarClima(par){
         const result=await dato.json()
         console.log(result)
         const {weather}=result
+        const {main}=result
         console.log(weather)
-        render(weather)
+        render(weather, result.name, main)
     } catch (error) {
         console.log(error)
         
     }
 
 }
-function render(par){
-    const url=`https://openweathermap.org/img/wn/${par[0].icon}@2x.png`
-    container.innerHTML=`<p>${par[0].main}</p>
-                        <p><img src=${url}></p>
-                        <p>${par[0].description}</p>`
+function render(par1,par2, par3){
+    const url=`https://openweathermap.org/img/wn/${par1[0].icon}@2x.png`
+    container.classList.replace('hidden', 'flex')
+    container.innerHTML=`
+    <h1 class="flex text-[50px] w-full justify-center items-center">${par2}</h1>
+    <p class="text-[20px]">${par1[0].main}</p>
+    <p><img src=${url}></p>
+    <p>${par1[0].description}</p>
+    <p class="text-[20px] text-[white]">Temperatura: ${(parseFloat(par3.temp)-273.15).toFixed(2)}°C</p>
+                            `
 }
