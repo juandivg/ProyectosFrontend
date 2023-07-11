@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex flex-col">
+    <header class="flex justify-center items-center bg-amber-200 h-[15vh] px-[5%] justify-between">
+        <div class="flex justify-center items-center">
+            <p>Meals</p>
+        </div>
+        <form class="flex flex-row justify-center items-center">
+            <p>Buscar por categoria</p>
+            <input class="border border-black rounded-md mx-[10px] h-[4vh]" type="text" id="category">
+            <p>Buscar por Nombre</p>
+            <input class="border border-black rounded-md mx-[10px] h-[4vh]" type="text" id="category">
+            <button id="button2" class="px-[10px] py-[5px] text-white bg-blue-400 border rounded-md" type="submit">Enviar</button>
+        </form>
+    </header>
+        <div id="container" class="grid grid-cols-3 gap-3 my-[20px] px-[20px]">
+
+        </div>
+        <script type="module" src="./app.js"></script>
+</body>
+</html>
